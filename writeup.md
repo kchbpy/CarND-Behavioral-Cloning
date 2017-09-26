@@ -18,7 +18,7 @@ The goals / steps of this project are the following:
 [image7]: ./pics/6.jpg "Recovery Image"
 [image8]: ./pics/7.jpg "Recovery Image"
 [image9]: ./pics/8.jpg "Recovery Image"
-[image10]: ./pics/9.jpg "Recovery Image"
+
 [image11]: ./pics/10.jpg "Recovery Image"
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -55,10 +55,12 @@ To reduce the training time, I shrinked the images(code line 30,35,39).
 The model includes RELU layers to introduce nonlinearity.
 
 I didn't use the lambda layer because when I use that layer I will get an error.Instead, I normalized the data after reading the data(code line 44).
+#### 2. Attempts to reduce overfitting in the model
 
-#### 2. Model parameter tuning
+The model contains dropout layers in order to reduce overfitting (model.py lines 77).
+#### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 81).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 84).
 
 #### 4. Appropriate training data
 
@@ -69,8 +71,19 @@ I also used the right and left views.
 For details about how I created the training data, see the next section. 
 
 ### Model Architecture and Training Strategy
+#### 1. Solution Design Approach
 
-#### 1. Final Model Architecture
+My model is refer to the NVIDIA model. The model work will in real word, so I think the model can work will in virtual world too.
+
+But the time of training is to long.
+
+When I reduce the image's height and width to half, I found that the image still contain enough infromation.
+
+So I chaged the model to fit the small image.
+
+There were a few spots where the vehicle fell off the track like the curve after the bridge. To improve the driving behavior in these cases, I recorded recorvering driving in these cases.
+
+#### 2. Final Model Architecture
 
 The final model architecture (model.py lines 68-79) consisted of five convolution layers and three full connection layers.   
 
@@ -78,7 +91,7 @@ Here is a visualization of the architecture
 
 ![alt text][image1]
 
-#### 2. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded the vehicle track in a clock-wise direction. Here is an example image of clock-wise driving:
 
@@ -105,7 +118,6 @@ Then I recorded recorvering driving. Then I picked off the data whoes angle is 0
 
 ![alt text][image9]
 
-![alt text][image10]
 
 ![alt text][image11]
 
